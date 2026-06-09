@@ -58,7 +58,7 @@ min  Σₛ p(s) · [ w₁ · Cost(s)  +  w₂ · SupplyRisk(s)  −  w₃ · Gre
 | Standard contract price p₁ | E[spot] × 1.10 | 5% / 10% / 15% premium |
 | RE contract price p₂ | E[spot] × 1.15 | 5% / 10% / 15% premium |
 
-**Weights w₁, w₂, w₃** are set by the company as priority preferences — not optimized. The model is solved across multiple weight combinations to produce a **trade-off frontier**.
+**Weights w₁, w₂, w₃** are set by the company as priority preferences. The model is solved across multiple weight combinations to produce a **trade-off frontier**.
 
 ---
 
