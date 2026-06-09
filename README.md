@@ -2,16 +2,13 @@
 ### Multi-Objective Linear Programming for Manufacturing Plants under Price & Supply Uncertainty
 
 ![Status](https://img.shields.io/badge/status-in%20progress-yellow)
-![Python](https://img.shields.io/badge/python-3.11-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
-
 ---
 
 ## Overview
 
-A manufacturing plant must procure electricity every hour to meet production demand. Electricity can be sourced from three options — a standard fixed-price contract, a RE-certified contract (Guarantee of Origin), and the spot market. No single source is optimal across all dimensions simultaneously.
+A manufacturing plant must procure electricity every hour to meet production demand. Electricity can be sourced from three options: a standard fixed-price contract, a RE-certified contract (Guarantee of Origin), and the spot market. No single source is optimal across all dimensions simultaneously.
 
-This project determines the **optimal hourly portfolio mix** — how much to procure from each source — by applying a **scenario-based Multi-Objective Linear Programming (MOLP)** framework that balances three competing objectives:
+This project determines the **optimal hourly portfolio mix** - how much to procure from each source - by applying a **scenario-based Multi-Objective Linear Programming (MOLP)** framework that balances three competing objectives:
 
 1. **Minimize procurement cost**
 2. **Minimize supply risk** (contract generator failure → balancing market exposure)
@@ -23,13 +20,13 @@ This project determines the **optimal hourly portfolio mix** — how much to pro
 
 The model combines two complementary components:
 
-**① Decision Tree** — structures uncertainty into 54 scenarios across four layers:
+**1. Decision Tree** — structures uncertainty into 54 scenarios across four layers:
 - Time context (Weekday / Weekend)
 - Time of day (Night / Day / Evening)
 - Demand level (Light / Medium / Peak) — from DAEWOO Load_Type data
 - Spot price state (Cheap / Normal / Expensive) — from ENTSO-E P33/P67 thresholds
 
-**② Stochastic LP** — for each scenario, optimally allocates:
+**2. Stochastic LP** — for each scenario, optimally allocates:
 - `x₁(t)` — MWh from standard contract
 - `x₂(t)` — MWh from RE-certified contract
 - `x₃(t)` — residual demand covered by spot market
@@ -73,11 +70,11 @@ min  Σₛ p(s) · [ w₁ · Cost(s)  +  w₂ · SupplyRisk(s)  −  w₃ · Gre
 | Balancing market prices | [Fingrid Open Data](https://data.fingrid.fi) | Balancing price p_bal(t) | 2019 |
 | Wind & solar production | [Fingrid Open Data](https://data.fingrid.fi) | RE generation context | 2019 |
 
-> **Note on data alignment:** DAEWOO (2018) and Finland market data (2019) are used as independent proxies — consumption *patterns* from DAEWOO, price *data* from Finland 2019 markets. The scaling factor adjusts DAEWOO consumption to a representative Finnish industrial plant (~500 GWh/year).
+> **Note on data alignment:** DAEWOO (2018) and Finland market data (2019) are used as independent proxies - consumption *patterns* from DAEWOO, price *data* from Finland 2019 markets. The scaling factor adjusts DAEWOO consumption to a representative Finnish industrial plant (~500 GWh/year).
 
 ---
 
-## Project Structure
+## Project Structure (expected)
 
 ```
 energy-procurement-optimization/
@@ -87,7 +84,7 @@ energy-procurement-optimization/
 │   └── project_brief.pdf          # Full project brief deck
 │
 ├── data/
-│   ├── raw/                       # Downloaded source data (not tracked)
+│   ├── raw/                       # Downloaded source data 
 │   └── processed/                 # Cleaned & merged datasets
 │
 └── notebooks/
@@ -114,19 +111,6 @@ energy-procurement-optimization/
 
 ---
 
-## Tech Stack
-
-```
-Python 3.11
-pandas · numpy · scipy
-PuLP (LP solver)
-matplotlib · seaborn
-entsoe-py (ENTSO-E API client)
-Jupyter Notebook
-```
-
----
-
 ## Status
 
 - [x] Project brief & methodology defined
@@ -142,8 +126,5 @@ Jupyter Notebook
 
 ## Background
 
-This project applies concepts from **Decision Analysis** coursework — decision trees, probability estimation, and linear optimization — to a realistic industrial energy procurement problem in the Nordic electricity market context.
+This project applies concepts from **Decision Analysis** coursework at **Aalto University** - decision trees, probability estimation, and linear optimization - to a realistic industrial energy procurement problem in the Nordic electricity market context.
 
----
-
-*Part of a data analysis portfolio. Built with Python and real market data.*
