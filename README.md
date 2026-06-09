@@ -24,13 +24,13 @@ The model combines two complementary components:
 **1. Decision Tree** — structures uncertainty into 54 scenarios across four layers:
 - Time context (Weekday / Weekend)
 - Time of day (Night / Day / Evening)
-- Demand level (Light / Medium / Peak) — from DAEWOO Load_Type data
-- Spot price state (Cheap / Normal / Expensive) — from ENTSO-E P33/P67 thresholds
+- Demand level (Light / Medium / Peak) 
+- Spot price state (Cheap / Normal / Expensive) P33/P67 thresholds
 
 **2. Stochastic LP** — for each scenario, optimally allocates:
-- `x₁(t)` — MWh from standard contract
-- `x₂(t)` — MWh from RE-certified contract
-- `x₃(t)` — residual demand covered by spot market
+- `x₁(t)`: MWh from standard contract
+- `x₂(t)`: MWh from RE-certified contract
+- `x₃(t)`: residual demand covered by spot market
 
 Weighted across all 54 scenarios by their empirical probabilities → **optimal in expectation**.
 
