@@ -2,6 +2,7 @@
 ### Multi-Objective Linear Programming for Manufacturing Plants under Price & Supply Uncertainty
 
 ![Status](https://img.shields.io/badge/status-in%20progress-yellow)
+> 📄 [View Project Brief](brief/project_brief.pdf) - methodology, model structure, and expected outputs
 ---
 
 ## Overview
