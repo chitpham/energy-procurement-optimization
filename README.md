@@ -45,7 +45,7 @@ Weighted across all 54 scenarios by their empirical probabilities → **optimal 
 
 **Objective:**
 ```
-min  Σₛ p(s) · [ w₁.Cost(s)  +  w₂ . SupplyRisk(s)  -  w₃ . GreenScore(s) ]
+min  Σₛ p(s) · [ w₁.Cost(s)  +  w₂ . SupplyRisk(s)  +  w₃ . Carbon Intensity(s) ]
 ```
 
 | Term | Formula | Description |
