@@ -26,9 +26,7 @@ This project determines the **optimal hourly portfolio mix** - how much to procu
 
 The model combines two complementary components:
 
-**1. Decision Tree** — structures uncertainty into 54 scenarios across four layers:
-- Time context (Weekday / Weekend)
-- Time of day (Night / Day / Evening)
+**1. Decision Tree** — structures uncertainty into 9 scenarios across 2 layers:
 - Demand level (Light / Medium / Peak) 
 - Spot price state (Cheap / Normal / Expensive) P33/P67 thresholds
 
@@ -37,7 +35,7 @@ The model combines two complementary components:
 - `x₂(t)`: MWh from RE-certified contract
 - `x₃(t)`: residual demand covered by spot market
 
-Weighted across all 54 scenarios by their empirical probabilities → **optimal in expectation**.
+Weighted across all 9 scenarios by their empirical probabilities → **optimal in expectation**.
 
 ---
 
