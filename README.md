@@ -18,7 +18,7 @@ This project determines the **optimal hourly portfolio mix** - how much to procu
 
 1. **Minimize procurement cost**
 2. **Minimize supply risk** (contract generator failure → balancing market exposure)
-3. **Maximize green energy sourcing** (GO-certified MWh)
+3. **Minimize CO2 emission** (standard contract & spot -> grid mix CO2 intensity, while 0 emission for RE-certified contract)
 
 ---
 
@@ -52,7 +52,7 @@ min  Σₛ p(s) · [ w₁ · Cost(s)  +  w₂ · SupplyRisk(s)  −  w₃ · Gre
 |------|---------|-------------|
 | Cost(s) | Σₜ [p₁·x₁ + p₂·x₂ + p₃(t)·x₃] | Procurement cost in € |
 | SupplyRisk(s) | Σₜ π·(x₁+x₂)·p_bal(t) | Expected balancing cost from contract generator failure |
-| GreenScore(s) | Σₜ x₂(t) | MWh from GO-certified RE contract |
+| GreenScore(s) | Σₜ ci(t).(x₁+x₃(t) | CO2 intesity from grid mix |
 
 **Key assumptions:**
 | Parameter | Baseline | Sensitivity range |
@@ -73,7 +73,7 @@ min  Σₛ p(s) · [ w₁ · Cost(s)  +  w₂ · SupplyRisk(s)  −  w₃ · Gre
 |---------|--------|------|--------|
 | DAEWOO Steel Energy Consumption | [UCI ML Repository](https://archive.ics.uci.edu/dataset/851/steel+industry+energy+consumption)  | Demand profile D(t), Load_Type scenario labels | 2018 |
 | Day-ahead spot prices (Finland) | [ENTSO-E Transparency Platform](https://transparency.entsoe.eu) | Spot price p₃(t) & price tier thresholds | 2018 |
-| Balancing market prices | [Fingrid Open Data](https://data.fingrid.fi) | Balancing price p_bal(t) | 2018 |
+| Balancing market prices | [Fingrid Open Data](https://data.fingrid.fi) | Balancing price p_bal(t) & Emission factor ci(t)| 2018 |
 
 > **Note on data alignment:** DAEWOO (2018) and Finland market data (2019) are used as independent proxies - consumption *patterns* from DAEWOO, price *data* from Finland 2019 markets. 
 
