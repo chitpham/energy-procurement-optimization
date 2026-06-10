@@ -94,11 +94,9 @@ energy-procurement-optimization/
 │
 └── notebooks/
     ├── 00_data_collection.ipynb   # Download & save all raw data
-    ├── 01_eda.ipynb               # Exploratory data analysis
-    ├── 02_preprocessing.ipynb     # Clean, align, scale, merge
-    ├── 03_decision_tree.ipynb     # Scenario tree & probability estimation
-    ├── 04_optimization.ipynb      # MOLP model & solution
-    └── 05_sensitivity.ipynb       # Sensitivity analysis & trade-off frontier
+    ├── 01_eda.ipynb               # Exploratory data analysis & probability estimation
+    ├── 02_optimization.ipynb      # MOLP model & solution
+    └── 03_sensitivity.ipynb       # Sensitivity analysis & trade-off frontier
 ```
 
 ---
@@ -122,10 +120,9 @@ energy-procurement-optimization/
 - [x] Data sources identified
 - [x] Data collection (`00_data_collection.ipynb`)
 - [x] EDA (`01_eda.ipynb`)
-- [ ] Preprocessing (`02_preprocessing.ipynb`)
-- [ ] Decision tree (`03_decision_tree.ipynb`)
-- [ ] Optimization model (`04_optimization.ipynb`)
-- [ ] Sensitivity analysis (`05_sensitivity.ipynb`)
+- [x] Decision tree (Refer to project `brief`)
+- [ ] Optimization model (`02_optimization.ipynb`)
+- [ ] Sensitivity analysis (`03_sensitivity.ipynb`)
 
 
 
