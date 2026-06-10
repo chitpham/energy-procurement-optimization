@@ -45,14 +45,14 @@ Weighted across all 54 scenarios by their empirical probabilities → **optimal 
 
 **Objective:**
 ```
-min  Σₛ p(s) · [ w₁ · Cost(s)  +  w₂ · SupplyRisk(s)  −  w₃ · GreenScore(s) ]
+min  Σₛ p(s) · [ w₁.Cost(s)  +  w₂ . SupplyRisk(s)  -  w₃ . GreenScore(s) ]
 ```
 
 | Term | Formula | Description |
 |------|---------|-------------|
-| Cost(s) | Σₜ [p₁·x₁ + p₂·x₂ + p₃(t)·x₃] | Procurement cost in € |
-| SupplyRisk(s) | Σₜ π·(x₁+x₂)·p_bal(t) | Expected balancing cost from contract generator failure |
-| GreenScore(s) | Σₜ ci(t).(x₁+x₃(t) | CO2 intesity from grid mix |
+| Cost(s) | Σₜ [p₁.x₁ + p₂.x₂ + p₃(t).x₃] | Procurement cost in € |
+| SupplyRisk(s) | Σₜ e.(x₁+x₂)·max[0,(p_bal(t) - p₃(t))]  | Expected balancing cost from contract generator failure |
+| Carbon Intensity(s) | Σₜ ci(t).(x₁+x₃(t)) | CO2 intesity from grid mix |
 
 **Key assumptions:**
 | Parameter | Baseline | Sensitivity range |
@@ -107,7 +107,7 @@ energy-procurement-optimization/
 
 | # | Output | Description |
 |---|--------|-------------|
-| 01 | Scenario probability table | Cross-tabulated empirical probabilities for all 54 leaf nodes |
+| 01 | Scenario probability table | Calibrated joint probabilities table of 9 scenarios |
 | 02 | Optimal portfolio mix | Hourly x₁ / x₂ / x₃ allocation per scenario |
 | 03 | Cost vs baseline | Expected savings vs naive always-spot strategy (€/year) |
 | 04 | Trade-off frontier | Cost vs green score as w₁, w₂, w₃ weights vary |
