@@ -4,6 +4,11 @@
 ![Status](https://img.shields.io/badge/status-in%20progress-yellow)
 > 📄 [View Project Brief](brief/project_brief.pdf) - methodology, model structure, and expected outputs
 ---
+## Background
+
+This is my personal project applying concepts from **Decision Analysis** coursework at **Aalto University** - decision trees, probability estimation, and linear optimization - to a realistic industrial energy procurement problem in the electricity market context.
+
+---
 
 ## Overview
 
@@ -123,9 +128,5 @@ energy-procurement-optimization/
 - [ ] Optimization model (`04_optimization.ipynb`)
 - [ ] Sensitivity analysis (`05_sensitivity.ipynb`)
 
----
 
-## Background
-
-This project applies concepts from **Decision Analysis** coursework at **Aalto University** - decision trees, probability estimation, and linear optimization - to a realistic industrial energy procurement problem in the Nordic electricity market context.
 
