@@ -121,7 +121,7 @@ energy-procurement-optimization/
 
 - [x] Project brief & methodology defined
 - [x] Data sources identified
-- [ ] Data collection (`00_data_collection.ipynb`)
+- [x] Data collection (`00_data_collection.ipynb`)
 - [ ] EDA (`01_eda.ipynb`)
 - [ ] Preprocessing (`02_preprocessing.ipynb`)
 - [ ] Decision tree (`03_decision_tree.ipynb`)
