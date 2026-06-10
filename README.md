@@ -71,12 +71,11 @@ min  Σₛ p(s) · [ w₁ · Cost(s)  +  w₂ · SupplyRisk(s)  −  w₃ · Gre
 
 | Dataset | Source | Role | Period |
 |---------|--------|------|--------|
-| DAEWOO Steel Energy Consumption | [UCI ML Repository](https://archive.ics.uci.edu/dataset/851/steel+industry+energy+consumption) (CC BY 4.0) | Demand profile D(t), Load_Type scenario labels | 2018 |
-| Day-ahead spot prices (Finland) | [ENTSO-E Transparency Platform](https://transparency.entsoe.eu) | Spot price p₃(t), price tier thresholds | 2019 |
-| Balancing market prices | [Fingrid Open Data](https://data.fingrid.fi) | Balancing price p_bal(t) | 2019 |
-| Wind & solar production | [Fingrid Open Data](https://data.fingrid.fi) | RE generation context | 2019 |
+| DAEWOO Steel Energy Consumption | [UCI ML Repository](https://archive.ics.uci.edu/dataset/851/steel+industry+energy+consumption)  | Demand profile D(t), Load_Type scenario labels | 2018 |
+| Day-ahead spot prices (Finland) | [ENTSO-E Transparency Platform](https://transparency.entsoe.eu) | Spot price p₃(t) & price tier thresholds | 2018 |
+| Balancing market prices | [Fingrid Open Data](https://data.fingrid.fi) | Balancing price p_bal(t) | 2018 |
 
-> **Note on data alignment:** DAEWOO (2018) and Finland market data (2019) are used as independent proxies - consumption *patterns* from DAEWOO, price *data* from Finland 2019 markets. The scaling factor adjusts DAEWOO consumption to a representative Finnish industrial plant (~500 GWh/year).
+> **Note on data alignment:** DAEWOO (2018) and Finland market data (2019) are used as independent proxies - consumption *patterns* from DAEWOO, price *data* from Finland 2019 markets. 
 
 ---
 
