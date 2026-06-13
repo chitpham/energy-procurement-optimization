@@ -1,28 +1,23 @@
 # Energy Procurement Optimization
 ### Multi-Objective Linear Programming for Manufacturing Plants under Price & Supply Uncertainty
 
-![Status](https://img.shields.io/badge/status-in%20progress-yellow)
-> 📄 [View Project Brief](brief/project_brief.pdf) - methodology, model structure, and expected outputs
----
-## Background
-
-This is my personal project applying concepts from **Decision Analysis** coursework at **Aalto University** - decision trees, probability estimation, and linear optimization - to a realistic industrial energy procurement problem in the electricity market context.
-
----
-
 ## Overview
+A manufacturing plant must procure electricity every hour to meet production demand, sourcing from three options: a standard fixed-price contract, a RE-certified contract (Guarantee of Origin), and the spot market. This project applies concepts from **Decision Analysis** coursework at **Aalto University** to determine the optimal hourly portfolio mix that balances:
+1. Cost: total procurement spend
+2. Supply Risk: exposure to balancing market costs if a contract generator fails to deliver
+3. Carbon Cost: monetary cost of emissions (via EU ETS carbon price) from grid-mix electricity (standard contract & spot vs. zero-emission RE contract)
 
-A manufacturing plant must procure electricity every hour to meet production demand. Electricity can be sourced from three options: a standard fixed-price contract, a RE-certified contract (Guarantee of Origin), and the spot market. No single source is optimal across all dimensions simultaneously.
-
-This project determines the **optimal hourly portfolio mix** - how much to procure from each source - by applying a **scenario-based Multi-Objective Linear Programming (MOLP)** framework that balances three competing objectives:
-
-1. **Minimize procurement cost**
-2. **Minimize supply risk** (contract generator failure → balancing market exposure)
-3. **Minimize CO2 emission** (standard contract & spot -> grid mix CO2 intensity, while 0 emission for RE-certified contract)
+A **decision tree** (9 scenarios: demand level x spot price state) structures the uncertainty, and a stochastic LP solves the optimal allocation across x1 (standard contract), x2 (RE contract), and x3 (spot) for each hour - weighted across scenarios by empirical probability.
 
 ---
+## Key Findings:
+1. **Cost and Carbon are largely insensitive to company priorities**: As Finland's grid is already clean and inexpensive, so even green-focused or risk-averse strategies cost nearly the same as cost-focused ones.
+2. **Supply Risk is where priorities diverge**: Green-focused profiles show the highest risk (RE contract counts toward both green score and risk exposure), while Risk-averse profiles drive risk to zero.
+3. **Portfolio composition shifts predictably**: Green priority roughly triples RE contract share (4%->15%); higher-stakes hours (peak demand, expensive prices) shift the mix toward contracts for price certainty.
+   
+---
 
-## Decision Framework
+## Approach
 
 The model combines two complementary components:
 
@@ -36,39 +31,6 @@ The model combines two complementary components:
 - `x₃(t)`: residual demand covered by spot market
 
 Weighted across all 9 scenarios by their empirical probabilities → **optimal in expectation**.
-
----
-
-## Optimization Model
-
-**Objective:**
-```
-min  Σₛ p(s) · [ w₁.Cost(s)  +  w₂ . SupplyRisk(s)  +  w₃ . Carbon Intensity(s) ]
-```
-
-| Term | Formula | Description |
-|------|---------|-------------|
-| Cost(s) | Σₜ [p₁.x₁ + p₂.x₂ + p₃(t).x₃] | Procurement cost in € |
-| SupplyRisk(s) | Σₜ e.(x₁+x₂)·max[0,(p_bal(t) - p₃(t))]  | Expected balancing cost from contract generator failure |
-| Carbon Intensity(s) | Σₜ ci(t).(x₁+x₃(t)).carbon_price | CO2 intesity from grid mix |
-
-**Key assumptions:**
-| Parameter | Baseline |
-|-----------|----------|
-| Contract failure probability π | 0.02 | 
-| Standard contract cap C̄₁ | 50% of avg D(t) |
-| RE contract cap C̄₂ | 20% of avg D(t) | 
-| Standard contract price p₁ | E[spot] × 1.10 | 
-| RE contract price p₂ | E[spot] × 1.15 |
-
-**Weights w₁, w₂, w₃** are set by the company as priority preferences. The model is solved across multiple weight combinations to produce a **trade-off frontier**.
-
----
-## Key Findings
-
-- **Cost and Carbon are largely insensitive to company priorities**: Finland's grid is already clean and inexpensive, so even green-focused or risk-averse strategies cost nearly the same as cost-focused ones.
-- **Supply Risk is where priorities diverge**: Green-focused profiles show the highest risk (RE contract counts toward both green score and risk exposure), while Risk-averse profiles drive risk to zero.
-- **Portfolio composition shifts predictably**: Green priority roughly triples RE contract share (4%→15%); higher-stakes hours (peak demand, expensive prices) shift the mix toward contracts for price certainty.
 
 ---
 
@@ -103,20 +65,6 @@ energy-procurement-optimization/
     ├── 01_eda.ipynb               # Exploratory data analysis & probability estimation
     └── 02_optimization.ipynb      # MOLP model & solution & Results Analysis
 ```
-
----
-
-## Expected Outputs
-
-| # | Output | Description |
-|---|--------|-------------|
-| 01 | Scenario probability table | Calibrated joint probabilities table of 9 scenarios |
-| 02 | Optimal portfolio mix | Hourly x₁ / x₂ / x₃ allocation per scenario |
-| 03 | Cost vs baseline | Expected savings vs naive always-spot strategy (€/year) |
-| 04 | Trade-off frontier | Cost vs green score as w₁, w₂, w₃ weights vary |
-| 05 | Contract premium sensitivity | Optimal mix at 5% / 10% / 15% premium levels |
-| 06 | Supply risk analysis | Impact of contract failure probability π on cost and balancing exposure |
-
 ---
 
 ## Status
@@ -127,4 +75,5 @@ energy-procurement-optimization/
 - [x] EDA (`01_eda.ipynb`)
 - [x] Decision tree (Refer to project `brief`)
 - [x] Optimization model (`02_optimization.ipynb`)
+
 
