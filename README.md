@@ -1,6 +1,8 @@
 # Energy Procurement Optimization
 ### Multi-Objective Linear Programming for Manufacturing Plants under Price & Supply Uncertainty
-
+ 
+> 📄 [View Project Brief](brief/project_brief.pdf) — full methodology, model formulas, and assumptions
+ 
 ## Overview
 A manufacturing plant must procure electricity every hour to meet production demand, sourcing from three options: a standard fixed-price contract, a RE-certified contract (Guarantee of Origin), and the spot market. This project applies concepts from **Decision Analysis** coursework at **Aalto University** to determine the optimal hourly portfolio mix that balances:
 1. Cost: total procurement spend
