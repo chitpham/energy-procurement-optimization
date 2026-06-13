@@ -50,18 +50,25 @@ min  Σₛ p(s) · [ w₁.Cost(s)  +  w₂ . SupplyRisk(s)  +  w₃ . Carbon Int
 |------|---------|-------------|
 | Cost(s) | Σₜ [p₁.x₁ + p₂.x₂ + p₃(t).x₃] | Procurement cost in € |
 | SupplyRisk(s) | Σₜ e.(x₁+x₂)·max[0,(p_bal(t) - p₃(t))]  | Expected balancing cost from contract generator failure |
-| Carbon Intensity(s) | Σₜ ci(t).(x₁+x₃(t)) | CO2 intesity from grid mix |
+| Carbon Intensity(s) | Σₜ ci(t).(x₁+x₃(t)).carbon_price | CO2 intesity from grid mix |
 
 **Key assumptions:**
-| Parameter | Baseline | Sensitivity range |
-|-----------|----------|-------------------|
-| Contract failure probability π | 0.02 | 0.01 / 0.02 / 0.05 |
-| Standard contract cap C̄₁ | 50% of avg D(t) | varied |
-| RE contract cap C̄₂ | 20% of avg D(t) | varied |
-| Standard contract price p₁ | E[spot] × 1.10 | 5% / 10% / 15% premium |
-| RE contract price p₂ | E[spot] × 1.15 | 5% / 10% / 15% premium |
+| Parameter | Baseline |
+|-----------|----------|
+| Contract failure probability π | 0.02 | 
+| Standard contract cap C̄₁ | 50% of avg D(t) |
+| RE contract cap C̄₂ | 20% of avg D(t) | 
+| Standard contract price p₁ | E[spot] × 1.10 | 
+| RE contract price p₂ | E[spot] × 1.15 |
 
 **Weights w₁, w₂, w₃** are set by the company as priority preferences. The model is solved across multiple weight combinations to produce a **trade-off frontier**.
+
+---
+## Key Findings
+
+- **Cost and Carbon are largely insensitive to company priorities**: Finland's grid is already clean and inexpensive, so even green-focused or risk-averse strategies cost nearly the same as cost-focused ones.
+- **Supply Risk is where priorities diverge**: Green-focused profiles show the highest risk (RE contract counts toward both green score and risk exposure), while Risk-averse profiles drive risk to zero.
+- **Portfolio composition shifts predictably**: Green priority roughly triples RE contract share (4%→15%); higher-stakes hours (peak demand, expensive prices) shift the mix toward contracts for price certainty.
 
 ---
 
@@ -87,14 +94,14 @@ energy-procurement-optimization/
 │   └── project_brief.pdf          # Full project brief deck
 │
 ├── data/
-│   ├── raw/                       # Downloaded source data 
-│   └── processed/                 # Cleaned & merged datasets
+│   ├── raw/                       # Downloaded source data
+│   ├── processed/                 # Cleaned & merged datasets'
+│   └── result/                    # Hourly portfolio
 │
 └── notebooks/
     ├── 00_data_collection.ipynb   # Download & save all raw data
     ├── 01_eda.ipynb               # Exploratory data analysis & probability estimation
-    ├── 02_optimization.ipynb      # MOLP model & solution
-    └── 03_sensitivity.ipynb       # Sensitivity analysis & trade-off frontier
+    └── 02_optimization.ipynb      # MOLP model & solution & Results Analysis
 ```
 
 ---
@@ -119,8 +126,5 @@ energy-procurement-optimization/
 - [x] Data collection (`00_data_collection.ipynb`)
 - [x] EDA (`01_eda.ipynb`)
 - [x] Decision tree (Refer to project `brief`)
-- [ ] Optimization model (`02_optimization.ipynb`)
-- [ ] Sensitivity analysis (`03_sensitivity.ipynb`)
-
-
+- [x] Optimization model (`02_optimization.ipynb`)
 
